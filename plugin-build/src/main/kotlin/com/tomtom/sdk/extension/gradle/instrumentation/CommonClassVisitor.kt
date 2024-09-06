@@ -5,7 +5,6 @@ import com.tomtom.sdk.extension.gradle.instrumentation.util.ExceptionHandler
 import com.tomtom.sdk.extension.gradle.instrumentation.util.FileLogTextifier
 import java.io.File
 import org.objectweb.asm.ClassVisitor
-import org.objectweb.asm.FieldVisitor
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.util.TraceMethodVisitor
 

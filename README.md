@@ -3,6 +3,7 @@
 ## Build the gradle plugin
 ```bash
 ./gradlew :plugin-build:publish
+./gradlew publish
 ```
 The artifact will be pushed to your mavenLocal repository.
 

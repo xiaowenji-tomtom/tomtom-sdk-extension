@@ -22,10 +22,6 @@ plugins {
 publishing {
     repositories {
         mavenLocal()
-        maven {
-            name = "mavenProj"
-            url = uri("$projectDir/mavenProj")
-        }
     }
 }
 

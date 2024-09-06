@@ -23,3 +23,5 @@ includeBuild("plugin-build") {
         substitute(module("com.tomtom:tomtom-android-gradle-plugin")).using(project(":"))
     }
 }
+
+include(":extension")

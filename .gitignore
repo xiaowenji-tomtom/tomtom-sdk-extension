@@ -2,7 +2,6 @@
 # Created by https://www.gitignore.io/api/gradle,android,intellij,androidstudio
 # Edit at https://www.gitignore.io/?templates=gradle,android,intellij,androidstudio
 
-mavenProj/
 .mvn/
 gradle/wrapper/
 

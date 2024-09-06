@@ -3,10 +3,8 @@
 package com.tomtom.sdk.extension.gradle.instrumentation
 
 import com.android.build.api.instrumentation.ClassContext
-import org.apache.groovy.parser.antlr4.GroovyParser.FieldDeclarationContext
 import java.io.Serializable
 import org.objectweb.asm.ClassVisitor
-import org.objectweb.asm.FieldVisitor
 import org.objectweb.asm.MethodVisitor
 
 interface Instrumentable<Visitor, InstrumentableContext> : Serializable {
