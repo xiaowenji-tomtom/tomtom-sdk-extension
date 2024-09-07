@@ -2,14 +2,17 @@ plugins {
     kotlin("jvm") version BuildPluginsVersion.KOTLIN apply false
     id("com.android.application") version BuildPluginsVersion.AGP apply false
     id("org.jlleitschuh.gradle.ktlint") version BuildPluginsVersion.KTLINT
-    id("com.android.library") version "8.5.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+    id("com.android.library") version "8.5.2" apply false
+    id("org.jetbrains.kotlin.android") version "2.0.20" apply false
 }
 
 allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://repositories.tomtom.com/artifactory/maven")
+        }
     }
 }
 

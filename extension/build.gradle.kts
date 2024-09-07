@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("maven-publish")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 publishing {
@@ -78,4 +79,9 @@ android {
 
 dependencies {
     implementation("com.bytedance.android:shadowhook:1.0.10")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.tomtom.sdk.http:http-core:1.11.0")
+    implementation("com.tomtom.sdk.maps:map-display:1.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 }
