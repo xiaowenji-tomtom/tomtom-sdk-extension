@@ -20,8 +20,7 @@ typedef jlong (*setStyle11_t)(JNIEnv *, jclass, jlong, jobject, jlong, jobject);
 setStyle11_t orig_setStyle11 = nullptr;
 jlong hooked_setStyle11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
     LOG("before setStyle11");
-    // cast arg1 to MapImpl
-    // change private member mMapStyler to custom instance
+
     return orig_setStyle11(jenv, jcls, jarg1, jarg1_, jarg2, jarg2_);
 }
 

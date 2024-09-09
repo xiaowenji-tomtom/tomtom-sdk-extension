@@ -3,6 +3,8 @@
 ## Build the gradle plugin
 ```bash
 ./gradlew :plugin-build:publish
+cd extension/src/main/cpp
+conan install . --build=missing  
 ./gradlew publish
 ```
 The artifact will be pushed to your mavenLocal repository.

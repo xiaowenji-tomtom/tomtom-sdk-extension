@@ -4,6 +4,7 @@
 
 .mvn/
 gradle/wrapper/
+.idea/
 
 ### Android ###
 # Built application files

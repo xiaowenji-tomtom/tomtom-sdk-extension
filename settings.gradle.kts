@@ -9,7 +9,16 @@ pluginManagement {
             }
         }
     }
+    val artifactoryTomtomgroupComUsername: String by extra
+    val artifactoryTomtomgroupComPassword: String by extra
     repositories {
+        maven {
+            credentials {
+                username = artifactoryTomtomgroupComUsername
+                password = artifactoryTomtomgroupComPassword
+            }
+            url = uri("https://artifactory.tomtomgroup.com/artifactory/maven-remotes")
+        }
         gradlePluginPortal()
         mavenCentral()
         google()
