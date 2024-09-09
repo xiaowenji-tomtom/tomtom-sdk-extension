@@ -2,37 +2,21 @@
 #include <string>
 #include <android/log.h>
 #include "shadowhook.h"
-#include <TomTom/NavKit/Map/Map.hpp>
 
 #define LOG_TAG "NativeExt"
 #define LOG(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
-
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_tomtom_sdk_extension_library_NavSdkExtension_stringFromJNI(
-        JNIEnv* env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
-}
-
-/* ---------------------------------------------------------------------------------------------- */
 
 typedef jlong (*setStyle11_t)(JNIEnv *, jclass, jlong, jobject, jlong, jobject);
 setStyle11_t orig_setStyle11 = nullptr;
 jlong hooked_setStyle11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
     LOG("before setStyle11");
-    TomTom::NavKit::Map::Map *arg1 = (TomTom::NavKit::Map::Map *) 0 ;
-    std::shared_ptr< TomTom::NavKit::Map::Map > *smartarg1 = 0 ;
-    smartarg1 = *(std::shared_ptr<  TomTom::NavKit::Map::Map > **)&jarg1;
-    arg1 = (TomTom::NavKit::Map::Map *)(smartarg1 ? smartarg1->get() : 0);
-    // cast arg1 to MapImpl
-    // change private member mMapStyler to custom instance
+    // TODO: call custom implementation of setStyle
     return orig_setStyle11(jenv, jcls, jarg1, jarg1_, jarg2, jarg2_);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_tomtom_sdk_extension_library_NavSdkExtension_hookForSmoothTransition(
+Java_com_tomtom_sdk_extension_library_NavSdkExtension_hookSetStyle(
         JNIEnv *env,
         jobject /* this */) {
     LOG("hook");

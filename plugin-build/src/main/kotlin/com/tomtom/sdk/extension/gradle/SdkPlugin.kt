@@ -3,6 +3,7 @@ package com.tomtom.sdk.extension.gradle
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.android.build.gradle.AppExtension
 import com.tomtom.sdk.extension.gradle.extensions.SentryPluginExtension
+import com.tomtom.sdk.extension.gradle.extensions.TomTomSdkExtension
 import com.tomtom.sdk.extension.gradle.util.AgpVersions
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -66,6 +67,16 @@ abstract class SdkPlugin @Inject constructor(
                 buildEvents,
             )
         }
+
+        project.extensions.create(
+            "navSdkExtension",
+            TomTomSdkExtension::class.java,
+            project
+        )
+        project.afterEvaluate {
+            val sdkExtension = project.extensions.getByType(TomTomSdkExtension::class.java)
+            sdkExtensionConfigs["shouldDisableInertia"] = sdkExtension.shouldDisableInertia.get()
+        }
     }
 
     companion object {
@@ -75,5 +86,7 @@ abstract class SdkPlugin @Inject constructor(
         internal val logger by lazy {
             LoggerFactory.getLogger(SdkPlugin::class.java)
         }
+
+        internal val sdkExtensionConfigs = mutableMapOf<String, Boolean>()
     }
 }

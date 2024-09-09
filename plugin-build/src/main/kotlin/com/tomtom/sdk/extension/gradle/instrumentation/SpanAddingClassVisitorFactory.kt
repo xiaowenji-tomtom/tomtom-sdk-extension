@@ -60,73 +60,11 @@ abstract class SpanAddingClassVisitorFactory :
             if (memoized != null) {
                 return memoized
             }
-
-            val sentryModules = parameters.get().sentryModulesService.get().sentryModules
-            val externalModules = parameters.get().sentryModulesService.get().externalModules
-            val androidXSqliteFrameWorkModule = DefaultModuleIdentifier.newId(
-                "androidx.sqlite",
-                "sqlite-framework"
-            )
-            val androidXSqliteFrameWorkVersion = externalModules.getOrDefault(
-                androidXSqliteFrameWorkModule,
-                SemVer()
-            )
-            val okHttpModule = DefaultModuleIdentifier.newId(
-                "com.squareup.okhttp3",
-                "okhttp"
-            )
-            val okHttpVersion = externalModules.getOrDefault(okHttpModule, SemVer())
-            val sentryOkhttpVersion = sentryModules.getOrDefault(
-                SentryModules.SENTRY_OKHTTP,
-                SemVer()
-            )
-            val useSentryAndroidOkHttp = sentryOkhttpVersion < SentryVersions.VERSION_OKHTTP
-
-            SdkPlugin.logger.info { "Read sentry modules: $sentryModules" }
-
-            val sentryModulesService = parameters.get().sentryModulesService.get()
-            val instrumentable = ChainedInstrumentable(
-                listOfNotNull(
-//                    AndroidXSQLiteOpenHelper().takeIf {
-//                        sentryModulesService.isNewDatabaseInstrEnabled()
-//                    },
-//                    AndroidXSQLiteDatabase().takeIf {
-//                        sentryModulesService.isOldDatabaseInstrEnabled()
-//                    },
-//                    AndroidXSQLiteStatement(androidXSqliteFrameWorkVersion).takeIf {
-//                        sentryModulesService.isOldDatabaseInstrEnabled()
-//                    },
-//                    AndroidXRoomDao().takeIf {
-//                        sentryModulesService.isNewDatabaseInstrEnabled() ||
-//                            sentryModulesService.isOldDatabaseInstrEnabled()
-//                    },
-//                    OkHttpEventListener(useSentryAndroidOkHttp, okHttpVersion).takeIf {
-//                        sentryModulesService.isOkHttpListenerInstrEnabled()
-//                    },
-//                    OkHttp(useSentryAndroidOkHttp).takeIf {
-//                        sentryModulesService.isOkHttpInstrEnabled()
-//                    },
-//                    WrappingInstrumentable().takeIf {
-//                        sentryModulesService.isFileIOInstrEnabled()
-//                    },
-//                    RemappingInstrumentable().takeIf {
-//                        sentryModulesService.isFileIOInstrEnabled()
-//                    },
-//                    ComposeNavigation().takeIf {
-//                        sentryModulesService.isComposeInstrEnabled()
-//                    },
-//                    Logcat().takeIf {
-//                        sentryModulesService.isLogcatInstrEnabled()
-//                    },
-//                    Application().takeIf {
-//                        sentryModulesService.isAppStartInstrEnabled()
-//                    },
-//                    ContentProvider().takeIf {
-//                        sentryModulesService.isAppStartInstrEnabled()
-//                    },
-                    Inertia(),
-                )
-            )
+            val instrumentableList = mutableListOf<ClassInstrumentable>()
+            if (SdkPlugin.sdkExtensionConfigs["shouldDisableInertia"] == true) {
+                instrumentableList.add(Inertia())
+            }
+            val instrumentable = ChainedInstrumentable(instrumentableList)
             SdkPlugin.logger.info {
                 "Instrumentable: $instrumentable"
             }
@@ -143,13 +81,6 @@ abstract class SpanAddingClassVisitorFactory :
         val isMinifiedClass = classReader?.isMinifiedClass() ?: false
 
         println("visit class: $className, minified=$isMinifiedClass")
-
-//        if (isMinifiedClass) {
-//            SentryPlugin.logger.info {
-//                "$className skipped from instrumentation because it's a minified class."
-//            }
-//            return nextClassVisitor
-//        }
 
         return instrumentable.getVisitor(
             classContext,
