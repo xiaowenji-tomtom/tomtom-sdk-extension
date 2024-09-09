@@ -13,6 +13,10 @@ project("NativeExt")
 
 find_package(shadowhook REQUIRED CONFIG)
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/../../../build/conan_build_${ANDROID_ABI})
+include(conanbuildinfo)
+find_package(mapdisplay-engine REQUIRED COMPONENTS core)
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
@@ -37,4 +41,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
         # List libraries link to the target library
         android
         log
+        mapdisplay-engine::core
         shadowhook::shadowhook)
