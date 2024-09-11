@@ -85,3 +85,19 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
 }
+
+//afterEvaluate {
+//    // Define the Conan install task
+//    val conanInstall = tasks.register<Exec>("conanInstall") {
+//        workingDir = file("${projectDir}/src/main/cpp")
+//        commandLine("conan", "install", ".", "--profile", "android_armv8", "--install-folder=${projectDir}/build/conan_build_arm64-v8a", "--build=missing")
+//    }
+//
+//    // Ensure Conan install runs before the externalNativeBuild
+//    tasks.named("externalNativeBuildDebug").configure {
+//        dependsOn(conanInstall)
+//    }
+//    tasks.named("externalNativeBuildRelease").configure {
+//        dependsOn(conanInstall)
+//    }
+//}

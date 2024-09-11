@@ -3,6 +3,9 @@
 ## Build the gradle plugin
 ```bash
 ./gradlew :plugin-build:publish
+cd extension/src/main/cpp
+conan install . --profile android_armv8 --install-folder=../../../build/conan_build_arm64-v8a -u --build=missing
+cd -
 ./gradlew publish
 ```
 The artifact will be pushed to your mavenLocal repository.

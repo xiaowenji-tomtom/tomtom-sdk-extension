@@ -20,7 +20,8 @@ class SdkExtension(ConanFile):
     keep_imports = True
 
     requires = (
-        "mapdisplay-engine/[>=2.3.3]@tomtom/stable",
+        "mapdisplay-engine/7.16.2@tomtom/local",
+        "mapbox-geojson-cpp/0.5.1",
     )
 
     build_requires = (
