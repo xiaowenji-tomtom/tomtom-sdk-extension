@@ -139,7 +139,6 @@ abstract class SentryModulesService :
         fun register(
             project: Project,
             features: Provider<Set<InstrumentationFeature>>,
-            logcatEnabled: Provider<Boolean>,
             sourceContextEnabled: Provider<Boolean>,
             dexguardEnabled: Provider<Boolean>,
             appStartEnabled: Provider<Boolean>
@@ -149,7 +148,6 @@ abstract class SentryModulesService :
                 SentryModulesService::class.java
             ) {
                 it.parameters.features.setDisallowChanges(features)
-                it.parameters.logcatEnabled.setDisallowChanges(logcatEnabled)
                 it.parameters.sourceContextEnabled.setDisallowChanges(sourceContextEnabled)
                 it.parameters.dexguardEnabled.setDisallowChanges(dexguardEnabled)
                 it.parameters.appStartEnabled.setDisallowChanges(appStartEnabled)

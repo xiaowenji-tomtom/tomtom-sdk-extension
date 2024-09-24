@@ -7,8 +7,7 @@ import com.tomtom.sdk.extension.gradle.instrumentation.MethodInstrumentable
 import com.tomtom.sdk.extension.gradle.instrumentation.SpanAddingClassVisitorFactory
 import org.objectweb.asm.ClassVisitor
 
-class Inertia :
-    ClassInstrumentable {
+class Inertia : ClassInstrumentable {
 
     companion object {
         private const val LOG_CLASSNAME = "ProgressiveGestureDetector"

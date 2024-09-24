@@ -66,16 +66,6 @@ open class TracingInstrumentationExtension @Inject constructor(objects: ObjectFa
     val excludes: SetProperty<String> = objects.setProperty(String::class.java)
         .convention(emptySet())
 
-    val logcat: LogcatExtension = objects.newInstance(
-        LogcatExtension::class.java
-    )
-
-    fun logcat(
-        logcatAction: Action<LogcatExtension>
-    ) {
-        logcatAction.execute(logcat)
-    }
-
     val appStart: AppStartExtension = objects.newInstance(
         AppStartExtension::class.java
     )

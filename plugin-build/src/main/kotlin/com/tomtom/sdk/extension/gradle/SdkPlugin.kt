@@ -76,6 +76,7 @@ abstract class SdkPlugin @Inject constructor(
         project.afterEvaluate {
             val sdkExtension = project.extensions.getByType(TomTomSdkExtension::class.java)
             sdkExtensionConfigs["shouldDisableInertia"] = sdkExtension.shouldDisableInertia.get()
+            sdkExtensionConfigs["applyLocationMarkerFix_1_11"] = sdkExtension.applyLocationMarkerFix_1_11.get()
         }
     }
 

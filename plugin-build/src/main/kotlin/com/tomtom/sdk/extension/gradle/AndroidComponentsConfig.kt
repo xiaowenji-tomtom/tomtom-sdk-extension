@@ -48,7 +48,6 @@ fun AndroidComponentsExtension<*, *, *>.configure(
                 val sentryModulesService = SentryModulesService.register(
                     project,
                     extension.tracingInstrumentation.features,
-                    extension.tracingInstrumentation.logcat.enabled,
                     extension.includeSourceContext,
                     extension.dexguardEnabled,
                     extension.tracingInstrumentation.appStart.enabled
@@ -77,9 +76,6 @@ fun AndroidComponentsExtension<*, *, *>.configure(
                     }
                     params.debug.setDisallowChanges(
                         extension.tracingInstrumentation.debug.get()
-                    )
-                    params.logcatMinLevel.setDisallowChanges(
-                        extension.tracingInstrumentation.logcat.minLevel
                     )
                     params.sentryModulesService.setDisallowChanges(sentryModulesService)
                     params.tmpDir.set(tmpDir)

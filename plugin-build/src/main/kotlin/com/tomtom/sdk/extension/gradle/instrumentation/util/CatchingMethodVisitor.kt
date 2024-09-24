@@ -27,7 +27,7 @@ class CatchingMethodVisitor(
             logger.error(e) {
                 """
                 Error while instrumenting $className.${methodContext.name} ${methodContext.descriptor}.
-                Please report this issue at https://github.com/getsentry/tomtom-android-gradle-plugin/issues
+                Please report this issue to xiaowen.ji@tomtom.com
                 """.trimIndent()
             }
             throw e
